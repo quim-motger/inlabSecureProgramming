@@ -1,20 +1,28 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<title>Login</title>
 </head>
 <body>
-<c:if test="${not empty login_error}">
-Username o password incorrecte
-</c:if>
-<form action="login" method="POST">
-<label>Username<input type="text" name="username"></label>
-<label>Password<input type="password" name="password"></label>
-<input type="submit" value="login"/>
-</form>
+	<div class="container">
+		<h1>Login</h1>
+		<c:if test="${not empty login_error}">
+			<div class="alert alert-danger">Username o password incorrecte</div>
+		</c:if>
+		<form action="login" method="POST" class="form-signin">
+			<div class="form-group">
+				<label for="username">Username</label> <input type="text"
+					name="username" class="form-control"">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					name="password" class="form-control">
+			</div>
+			<button class="btn btn-lg btn-primary pull-right" type="submit">Login</button>
+		</form>
+	</div>
 </body>
 </html>
