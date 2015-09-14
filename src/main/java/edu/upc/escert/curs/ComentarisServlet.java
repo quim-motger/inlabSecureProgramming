@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comentaris")
 public class ComentarisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentaris repositoriComentaris=RepositoriComentarisBD.getInstance();
+	private RepositoriComentaris repositoriComentaris=RepositoriComentaris.getInstance();
 
 
 	/**
@@ -33,7 +33,7 @@ public class ComentarisServlet extends HttpServlet {
 		c.setComentari(request.getParameter("comentari"));
 		c.setData(new Date());
 		c.setAutor(request.getParameter("autor"));
-		repositoriComentaris.addComentari(c);
+		repositoriComentaris.afegirComentari(c);
 		response.sendRedirect("comentaris");
 	}
 

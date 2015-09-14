@@ -1,11 +1,59 @@
 package edu.upc.escert.curs;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+import java.util.ArrayList;
 
-public interface RepositoriComentaris {
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
-	public abstract List<Comentari> getComentaris();
+public class RepositoriComentaris extends Repositori {
 
-	public abstract void addComentari(Comentari c);
+	static RepositoriComentaris instance;
+
+	public static RepositoriComentaris getInstance() {
+		if (instance == null) {
+			instance = new RepositoriComentaris();
+		}
+		return instance;
+	}
+
+	protected void crear() {
+		executaSQL("create table IF NOT EXISTS comentaris (autor varchar(100),comentari varchar2(2000),data date)");
+	}
+
+	public List<Comentari> getComentaris() {
+		List<Comentari> comentaris=new ArrayList<Comentari>();
+		Connection conn=null;
+		Statement stmt=null;
+		ResultSet rs=null;
+		try {
+			conn = ds.getConnection();
+			stmt = conn.createStatement();
+			rs=stmt.executeQuery("SELECT * FROM COMENTARIS");
+			while (rs.next()) {
+				Comentari c=new Comentari();
+				c.setAutor(rs.getString("autor"));
+				c.setComentari(rs.getString("comentari"));
+				c.setData(rs.getDate("data"));
+				comentaris.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();} catch (Exception e1) {;}
+			try {stmt.close();} catch (Exception e2) {;}
+			try {rs.close();} catch (Exception e3) {;}
+		}
+		return comentaris;
+	}
+
+	public void afegirComentari(Comentari c) {
+		executaSQL("INSERT INTO COMENTARIS VALUES ('" + c.getAutor() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");
+	}
 
 }
