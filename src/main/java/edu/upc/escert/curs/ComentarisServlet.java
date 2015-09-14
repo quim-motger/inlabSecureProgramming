@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comentaris")
 public class ComentarisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentaris repositoriComentaris=RepositoriComentarisFake.getInstance();
+	private RepositoriComentaris repositoriComentaris=RepositoriComentarisBD.getInstance();
 
 
 	/**

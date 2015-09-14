@@ -3,8 +3,9 @@
   <Resource name="jdbc/escert"
             auth="Container"
             type="javax.sql.DataSource"
-            driverClassName="org.sqlite.JDBC"
-            url="jdbc:sqlite:/webapps/curs/META-INF/escert.db"
-            factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
+            driverClassName="org.h2.Driver"
+            url="jdbc:h2:~/curs-escert"
+            username="sa" password="">
   </Resource>
+  
 </Context>
