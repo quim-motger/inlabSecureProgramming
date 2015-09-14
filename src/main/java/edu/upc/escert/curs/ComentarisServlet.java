@@ -23,7 +23,13 @@ public class ComentarisServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Comentari> comentaris=repositoriComentaris.getComentaris();
+		List<Comentari> comentaris=null;
+		String autor=request.getParameter("autor");
+		if (autor!=null) {
+			comentaris=repositoriComentaris.getComentarisPerAutor(autor);
+		} else {
+			comentaris=repositoriComentaris.getComentaris();
+		}
 		request.setAttribute("comentaris",comentaris);
 		request.getRequestDispatcher("/comentaris.jsp").forward(request,response);
 	}

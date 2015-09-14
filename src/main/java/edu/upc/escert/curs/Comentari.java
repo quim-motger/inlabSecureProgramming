@@ -8,7 +8,6 @@ public class Comentari {
 	private Date data;
 	private String autor;
 
-
 	public String getComentari() {
 		return comentari;
 	}

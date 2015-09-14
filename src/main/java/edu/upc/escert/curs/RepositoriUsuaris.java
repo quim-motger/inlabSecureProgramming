@@ -18,9 +18,9 @@ public class RepositoriUsuaris extends Repositori {
 
 	protected void crear() {
 		executaSQL("CREATE TABLE IF NOT EXISTS USUARIS (USERNAME VARCHAR(100),PASSWORD VARCHAR(100))");
-		afegirUsuari("jaume","secret");
+		afegirUsuari("jaume","trustno1");
 		afegirUsuari("scott","tiger");
-		afegirUsuari("admin","admin");
+		afegirUsuari("ton","secret");
 	}
 
 	public boolean autenticar (String username, String password) {

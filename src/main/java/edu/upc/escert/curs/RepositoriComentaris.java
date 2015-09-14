@@ -26,7 +26,7 @@ public class RepositoriComentaris extends Repositori {
 		executaSQL("create table IF NOT EXISTS comentaris (autor varchar(100),comentari varchar2(2000),data date)");
 	}
 
-	public List<Comentari> getComentaris() {
+	public List<Comentari> getComentarisFromSQL(String sql) {
 		List<Comentari> comentaris=new ArrayList<Comentari>();
 		Connection conn=null;
 		Statement stmt=null;
@@ -34,7 +34,7 @@ public class RepositoriComentaris extends Repositori {
 		try {
 			conn = ds.getConnection();
 			stmt = conn.createStatement();
-			rs=stmt.executeQuery("SELECT * FROM COMENTARIS");
+			rs=stmt.executeQuery(sql);
 			while (rs.next()) {
 				Comentari c=new Comentari();
 				c.setAutor(rs.getString("autor"));
@@ -50,6 +50,14 @@ public class RepositoriComentaris extends Repositori {
 			try {rs.close();} catch (Exception e3) {;}
 		}
 		return comentaris;
+	}
+
+	public List<Comentari> getComentaris() {
+		return getComentarisFromSQL("SELECT * FROM COMENTARIS");
+	}
+
+	public List<Comentari> getComentarisPerAutor (String autor) {
+		return getComentarisFromSQL("SELECT * FROM COMENTARIS WHERE AUTOR='"+autor+"'");
 	}
 
 	public void afegirComentari(Comentari c) {

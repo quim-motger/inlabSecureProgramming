@@ -8,11 +8,11 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Comentaris</h1>
+		<h1>Comentaris ${param.autor}</h1>
 		<c:forEach items="${comentaris}" var="c">
 			<div class="well">
 				<p>${c.comentari}</p>
-				<i>Publicat per ${c.autor} el dia ${c.data}</i>
+				<i>Publicat per <a href="?autor=${c.autor}">${c.autor}</a> el dia ${c.data}</i>
 			</div>
 		</c:forEach>
 		<c:if test="${not empty username}">
