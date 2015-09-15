@@ -11,8 +11,11 @@
 		<h1>Comentaris ${param.autor}</h1>
 		<c:forEach items="${comentaris}" var="c">
 			<div class="well">
+				<c:if test="${username==c.autor}" >
+				<a class="btn btn-default pull-right" href="delete?id=${c.id}">Esborrar comentari</a>
+				</c:if>				
 				<p>${c.comentari}</p>
-				<i>Publicat per <a href="?autor=${c.autor}">${c.autor}</a> el dia ${c.data}</i>
+				<i>Publicat per <a href="?autor=${c.autor}">${c.autor}</a> el dia ${c.data}</i>								
 			</div>
 		</c:forEach>
 		<c:if test="${not empty username}">

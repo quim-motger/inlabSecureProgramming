@@ -23,7 +23,12 @@ public class RepositoriComentaris extends Repositori {
 	}
 
 	protected void crear() {
-		executaSQL("create table IF NOT EXISTS comentaris (autor varchar(100),comentari varchar2(2000),data date)");
+		executaSQL("create table IF NOT EXISTS comentaris ("+
+				"id int auto_increment, "+
+				"autor varchar(100), "+
+				"comentari varchar2(2000), "+
+				"data date default CURRENT_TIMESTAMP )");
+		afegirComentari(new Comentari("jaume","Benvinguts, comenteu!"));
 	}
 
 	public List<Comentari> getComentarisFromSQL(String sql) {
@@ -37,6 +42,7 @@ public class RepositoriComentaris extends Repositori {
 			rs=stmt.executeQuery(sql);
 			while (rs.next()) {
 				Comentari c=new Comentari();
+				c.setId(rs.getInt("id"));
 				c.setAutor(rs.getString("autor"));
 				c.setComentari(rs.getString("comentari"));
 				c.setData(rs.getDate("data"));
@@ -61,7 +67,11 @@ public class RepositoriComentaris extends Repositori {
 	}
 
 	public void afegirComentari(Comentari c) {
-		executaSQL("INSERT INTO COMENTARIS VALUES ('" + c.getAutor() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");
+		executaSQL("INSERT INTO COMENTARIS (autor,comentari,data) VALUES ('" + c.getAutor() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");
 	}
+	
+	public void esborrarComentari(int id) {
+		executaSQL("DELETE COMENTARIS WHERE ID="+id);
+	}	
 
 }
