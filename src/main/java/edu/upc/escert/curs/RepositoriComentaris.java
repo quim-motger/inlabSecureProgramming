@@ -28,7 +28,9 @@ public class RepositoriComentaris extends Repositori {
 				"autor varchar(100), "+
 				"comentari varchar2(2000), "+
 				"data date default CURRENT_TIMESTAMP )");
-		afegirComentari(new Comentari("jaume","Benvinguts, comenteu!"));
+		if (getComentaris().isEmpty()) {
+			afegirComentari(new Comentari("jaume","Benvinguts, comenteu!"));
+		}
 	}
 
 	public List<Comentari> getComentarisFromSQL(String sql) {
