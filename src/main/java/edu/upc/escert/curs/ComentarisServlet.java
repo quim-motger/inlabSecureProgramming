@@ -34,10 +34,11 @@ public class ComentarisServlet extends HttpServlet {
 		request.getRequestDispatcher("/comentaris.jsp").forward(request,response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String comentari=request.getParameter("comentari");
 		String autor=request.getParameter("autor");
-		repositoriComentaris.afegirComentari(new Comentari(autor,comentari));
+		String titol=request.getParameter("titol");
+		repositoriComentaris.afegirComentari(new Comentari(autor,titol,comentari));
 		response.sendRedirect("comentaris");
 	}
 

@@ -5,24 +5,32 @@ import java.util.Date;
 public class Comentari {
 
 	private int id;
+	private String titol;
 	private String comentari;
 	private Date data;
 	private String autor;
 
 	public Comentari () {
 	}
-	
-	public Comentari (String autor,String comentari) {
+
+	public Comentari (String autor,String titol,String comentari) {
 		setAutor(autor);
+		setTitol(titol);
 		setComentari(comentari);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}	
+	}
+	public String getTitol() {
+		return titol;
+	}
+	public void setTitol(String titol) {
+		this.titol = titol;
+	}
 	public String getComentari() {
 		return comentari;
 	}
@@ -41,4 +49,5 @@ public class Comentari {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
+
 }

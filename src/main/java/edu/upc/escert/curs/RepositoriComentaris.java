@@ -26,10 +26,15 @@ public class RepositoriComentaris extends Repositori {
 		executaSQL("create table IF NOT EXISTS comentaris ("+
 				"id int auto_increment, "+
 				"autor varchar(100), "+
+				"titol varchar(200), "+
 				"comentari varchar2(2000), "+
 				"data date default CURRENT_TIMESTAMP )");
 		if (getComentaris().isEmpty()) {
-			afegirComentari(new Comentari("jaume","Benvinguts, comenteu!"));
+			afegirComentari(new Comentari(
+					"jaume","Benvinguts, comenteu!",
+					"Aquesta aplicació està feta <b>expressament</b> amb vulnerabilitats."+
+					"La idea es que al final del curs tinguem una versió <i>millorada</i>."
+			));
 		}
 	}
 
@@ -46,6 +51,7 @@ public class RepositoriComentaris extends Repositori {
 				Comentari c=new Comentari();
 				c.setId(rs.getInt("id"));
 				c.setAutor(rs.getString("autor"));
+				c.setTitol(rs.getString("titol"));
 				c.setComentari(rs.getString("comentari"));
 				c.setData(rs.getDate("data"));
 				comentaris.add(c);
@@ -69,11 +75,12 @@ public class RepositoriComentaris extends Repositori {
 	}
 
 	public void afegirComentari(Comentari c) {
-		executaSQL("INSERT INTO COMENTARIS (autor,comentari,data) VALUES ('" + c.getAutor() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");
+		executaSQL("INSERT INTO COMENTARIS (autor,titol,comentari,data) VALUES ('" +
+				c.getAutor() + "','" + c.getTitol() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");
 	}
-	
+
 	public void esborrarComentari(int id) {
 		executaSQL("DELETE COMENTARIS WHERE ID="+id);
-	}	
+	}
 
 }
