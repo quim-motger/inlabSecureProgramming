@@ -1,17 +1,20 @@
-package edu.upc.escert.curs;
+package edu.upc.escert.curs.repositori.jdbc;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class RepositoriUsuaris extends Repositori {
+import edu.upc.escert.curs.repositori.RepositoriUsuaris;
 
-	static RepositoriUsuaris instance;
+public class RepositoriUsuarisJDBC extends Repositori implements RepositoriUsuaris {
 
-	public static RepositoriUsuaris getInstance() {
+	static RepositoriUsuarisJDBC instance;
+
+	public static RepositoriUsuarisJDBC getInstance() {
 		if (instance==null) {
-			instance=new RepositoriUsuaris();
+			instance=new RepositoriUsuarisJDBC();
 		}
 		return instance;
 	}
@@ -23,6 +26,7 @@ public class RepositoriUsuaris extends Repositori {
 		afegirUsuari("ton","secret");
 	}
 
+	@Override
 	public boolean autenticar (String username, String password) {
 		Connection conn=null;
 		Statement stmt=null;
@@ -47,6 +51,7 @@ public class RepositoriUsuaris extends Repositori {
 		}
 	}
 
+	@Override
 	public void afegirUsuari (String username, String password) {
 		executaSQL("INSERT INTO USUARIS VALUES ('" + username + "','" + password + "')");
 	}

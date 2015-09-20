@@ -1,4 +1,4 @@
-package edu.upc.escert.curs;
+package edu.upc.escert.curs.repositori.jdbc;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -7,15 +7,19 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 public abstract class Repositori {
 
 	protected DataSource ds;
+	protected JdbcTemplate jdbcTemplate;
 
 	public Repositori() {
 		try {
 			Context ctx = new InitialContext();
 			Context envContext  = (Context)ctx.lookup("java:/comp/env");
 			ds = (DataSource) envContext.lookup("jdbc/escert");
+			jdbcTemplate=new JdbcTemplate(ds);
 			crear();
 		} catch (Exception e){
 			e.printStackTrace();

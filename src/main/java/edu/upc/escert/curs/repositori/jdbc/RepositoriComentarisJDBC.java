@@ -1,23 +1,23 @@
-package edu.upc.escert.curs;
+package edu.upc.escert.curs.repositori.jdbc;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import edu.upc.escert.curs.Comentari;
+import edu.upc.escert.curs.repositori.RepositoriComentaris;
 
-public class RepositoriComentaris extends Repositori {
+public class RepositoriComentarisJDBC extends Repositori implements RepositoriComentaris {
 
-	static RepositoriComentaris instance;
+	static RepositoriComentarisJDBC instance;
 
-	public static RepositoriComentaris getInstance() {
+	public static RepositoriComentarisJDBC getInstance() {
 		if (instance == null) {
-			instance = new RepositoriComentaris();
+			instance = new RepositoriComentarisJDBC();
 		}
 		return instance;
 	}
@@ -38,6 +38,7 @@ public class RepositoriComentaris extends Repositori {
 		}
 	}
 
+	@Override
 	public List<Comentari> getComentarisFromSQL(String sql) {
 		List<Comentari> comentaris=new ArrayList<Comentari>();
 		Connection conn=null;
@@ -66,19 +67,23 @@ public class RepositoriComentaris extends Repositori {
 		return comentaris;
 	}
 
+	@Override
 	public List<Comentari> getComentaris() {
 		return getComentarisFromSQL("SELECT * FROM COMENTARIS");
 	}
 
+	@Override
 	public List<Comentari> getComentarisPerAutor (String autor) {
 		return getComentarisFromSQL("SELECT * FROM COMENTARIS WHERE AUTOR='"+autor+"'");
 	}
 
+	@Override
 	public void afegirComentari(Comentari c) {
 		executaSQL("INSERT INTO COMENTARIS (autor,titol,comentari,data) VALUES ('" +
 				c.getAutor() + "','" + c.getTitol() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");
 	}
 
+	@Override
 	public void esborrarComentari(int id) {
 		executaSQL("DELETE COMENTARIS WHERE ID="+id);
 	}
