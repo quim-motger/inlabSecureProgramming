@@ -1,7 +1,6 @@
 package edu.upc.escert.curs;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +13,8 @@ import edu.upc.escert.curs.repositori.jdbctemplate.RepositoriComentarisJDBCTempl
 /**
  * Servlet implementation class Llistar
  */
-@WebServlet("/comentaris")
-public class ComentarisServlet extends HttpServlet {
+@WebServlet("/comentar")
+public class ComentarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private RepositoriComentarisJDBCTemplate repositoriComentaris=RepositoriComentarisJDBCTemplate.getInstance();
 
@@ -24,15 +23,10 @@ public class ComentarisServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Comentari> comentaris=null;
-		String autor=request.getParameter("autor");
-		if (autor!=null) {
-			comentaris=repositoriComentaris.getComentarisPerAutor(autor);
-		} else {
-			comentaris=repositoriComentaris.getComentaris();
+		if (request.getSession().getAttribute("username")==null) {
+			response.sendRedirect("login");
 		}
-		request.setAttribute("comentaris",comentaris);
-		request.getRequestDispatcher("/comentaris.jsp").forward(request,response);
+		request.getRequestDispatcher("/comentar.jsp").forward(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

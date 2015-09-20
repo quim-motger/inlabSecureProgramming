@@ -20,10 +20,10 @@ public class RepositoriUsuarisJDBC extends Repositori implements RepositoriUsuar
 	}
 
 	protected void crear() {
-		executaSQL("CREATE TABLE IF NOT EXISTS USUARIS (USERNAME VARCHAR(100),PASSWORD VARCHAR(100))");
-		afegirUsuari("jaume","trustno1");
-		afegirUsuari("scott","tiger");
-		afegirUsuari("ton","secret");
+		executaSQL("CREATE TABLE IF NOT EXISTS USUARIS (USERNAME VARCHAR(100),PASSWORD VARCHAR(100),rol varchar2(10))");
+		afegirUsuari("jaume","trustno1","admin");
+		afegirUsuari("scott","tiger","usuari");
+		afegirUsuari("ton","secret","usuari");
 	}
 
 	@Override
@@ -52,8 +52,8 @@ public class RepositoriUsuarisJDBC extends Repositori implements RepositoriUsuar
 	}
 
 	@Override
-	public void afegirUsuari (String username, String password) {
-		executaSQL("INSERT INTO USUARIS VALUES ('" + username + "','" + password + "')");
+	public void afegirUsuari (String username, String password, String rol) {
+		executaSQL("INSERT INTO USUARIS VALUES ('" + username + "','" + password + "','" + rol+ "')");
 	}
 
 }

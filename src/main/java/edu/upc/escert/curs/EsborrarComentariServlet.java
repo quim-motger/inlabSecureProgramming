@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import edu.upc.escert.curs.repositori.RepositoriComentaris;
 import edu.upc.escert.curs.repositori.jdbc.RepositoriComentarisJDBC;
 
-@WebServlet("/delete")
-public class DeleteComentariServlet extends HttpServlet {
+@WebServlet("/esborrar")
+public class EsborrarComentariServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private RepositoriComentaris repositoriComentaris=RepositoriComentarisJDBC.getInstance();
 

@@ -47,8 +47,8 @@ public class RepositoriComentarisJDBCTemplate extends Repositori {
 
 	public void afegirComentari(Comentari c) {
 		jdbcTemplate.update(
-				"INSERT INTO COMENTARIS (autor,titol,comentari,data) VALUES (?,?,?,?,CURRENT_TIMESTAMP())",
-				new Object[]{c.getAutor(),c.getTitol(),c.getComentari()},rowMapper);
+				"INSERT INTO COMENTARIS (autor,titol,comentari,data) VALUES (?,?,?,CURRENT_TIMESTAMP())",
+				new Object[]{c.getAutor(),c.getTitol(),c.getComentari()});
 	}
 
 	public void esborrarComentari(int id) {
