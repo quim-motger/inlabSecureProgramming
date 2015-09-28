@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.upc.escert.curs.repositori.jdbctemplate.RepositoriComentarisJDBCTemplate;
+import edu.upc.escert.curs.repositori.RepositoriFactory;
+import edu.upc.escert.curs.repositori.RepositoriComentaris;
 
 /**
  * Servlet implementation class Llistar
@@ -16,16 +17,14 @@ import edu.upc.escert.curs.repositori.jdbctemplate.RepositoriComentarisJDBCTempl
 @WebServlet("/comentar")
 public class ComentarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentarisJDBCTemplate repositoriComentaris=RepositoriComentarisJDBCTemplate.getInstance();
+	private RepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("username")==null) {
-			response.sendRedirect("login");
-		}
+		request.setAttribute("username",request.getRemoteUser());
 		request.getRequestDispatcher("/comentar.jsp").forward(request,response);
 	}
 

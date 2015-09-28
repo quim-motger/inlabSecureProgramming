@@ -1,6 +1,7 @@
 package edu.upc.escert.curs;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.upc.escert.curs.repositori.jdbctemplate.RepositoriComentarisJDBCTemplate;
+import edu.upc.escert.curs.repositori.jdbc.RepositoriComentarisJDBC;
 
 /**
  * Servlet implementation class Llistar
@@ -17,7 +18,7 @@ import edu.upc.escert.curs.repositori.jdbctemplate.RepositoriComentarisJDBCTempl
 @WebServlet("/")
 public class LlistaComentarisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentarisJDBCTemplate repositoriComentaris=RepositoriComentarisJDBCTemplate.getInstance();
+	private RepositoriComentarisJDBC repositoriComentaris=RepositoriComentarisJDBC.getInstance();
 
 
 	/**

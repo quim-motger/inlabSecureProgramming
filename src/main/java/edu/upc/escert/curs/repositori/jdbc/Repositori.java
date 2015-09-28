@@ -36,6 +36,7 @@ public abstract class Repositori {
 			stmt.execute(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} finally {
 			try {conn.close();} catch (Exception e1) {;}
 			try {stmt.close();} catch (Exception e2) {;}
