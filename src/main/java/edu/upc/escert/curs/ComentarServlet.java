@@ -21,11 +21,16 @@ public class ComentarServlet extends HttpServlet {
 	private IRepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("username",request.getRemoteUser());
+		if (request.getSession().getAttribute("username")==null) {
+			response.sendRedirect("login");
+			return;
+		}
+		request.setAttribute("username",request.getSession().getAttribute("username"));
 		request.getRequestDispatcher("/comentar.jsp").forward(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String comentari=request.getParameter("comentari");
 		String autor=request.getParameter("autor");
 		String titol=request.getParameter("titol");
