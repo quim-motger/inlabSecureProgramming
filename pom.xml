@@ -18,21 +18,6 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>4.2.1.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
-			<artifactId>owasp-java-html-sanitizer</artifactId>
-			<version>[r239,)</version>
-		</dependency>
-		<dependency>
-			<groupId>org.owasp.encoder</groupId>
-			<artifactId>encoder-jsp</artifactId>
-			<version>1.2</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -47,6 +32,9 @@
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<contextFile>src/main/webapp/META-INF/context.xml</contextFile>
+				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>com.h2database</groupId>
