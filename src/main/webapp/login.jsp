@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<h1>Login</h1>
-		<c:if test="${not empty param.error}">
+		<c:if test="${not empty login_error}">
 			<div class="alert alert-danger">Username o password incorrecte</div>
 		</c:if>
 		<form action="login" method="POST" class="form-signin">
