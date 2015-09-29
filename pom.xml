@@ -23,6 +23,16 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.2.1.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+			<artifactId>owasp-java-html-sanitizer</artifactId>
+			<version>[r239,)</version>
+		</dependency>
+		<dependency>
+			<groupId>org.owasp.encoder</groupId>
+			<artifactId>encoder-jsp</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

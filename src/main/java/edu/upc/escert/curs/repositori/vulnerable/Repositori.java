@@ -1,4 +1,4 @@
-package edu.upc.escert.curs.repositori.jdbc;
+package edu.upc.escert.curs.repositori.vulnerable;
 
 import java.sql.Connection;
 import java.sql.Statement;

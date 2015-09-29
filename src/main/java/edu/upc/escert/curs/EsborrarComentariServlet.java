@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.upc.escert.curs.repositori.RepositoriComentaris;
+import edu.upc.escert.curs.repositori.IRepositoriComentaris;
 import edu.upc.escert.curs.repositori.RepositoriFactory;
 
 @WebServlet("/esborrar")
 public class EsborrarComentariServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
+	private IRepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
 
 
 	/**

@@ -10,7 +10,7 @@
 
   <Realm className="org.apache.catalina.realm.DataSourceRealm"
    dataSourceName="jdbc/escert" localDataSource="true"
-   userTable="usuaris" userNameCol="username" userCredCol="password"
+   userTable="usuaris" userNameCol="username" userCredCol="password" digest="sha-256"
    userRoleTable="usuaris" roleNameCol="rol"/>
 
 

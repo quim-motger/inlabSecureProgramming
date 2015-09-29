@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
+import org.owasp.html.Sanitizers;
+
 import edu.upc.escert.curs.repositori.RepositoriFactory;
-import edu.upc.escert.curs.repositori.RepositoriComentaris;
+import edu.upc.escert.curs.repositori.IRepositoriComentaris;
 
 /**
  * Servlet implementation class Llistar
@@ -17,9 +21,10 @@ import edu.upc.escert.curs.repositori.RepositoriComentaris;
 @WebServlet("/comentar")
 public class ComentarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
-
-
+	private IRepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
+	
+	public static PolicyFactory policyHTML = Sanitizers.FORMATTING.and(Sanitizers.LINKS);
+	public static PolicyFactory policyText = new HtmlPolicyBuilder().toFactory();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -29,7 +34,7 @@ public class ComentarServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String comentari=request.getParameter("comentari");
+		String comentari=policyHTML.sanitize(request.getParameter("comentari"));
 		String autor=request.getParameter("autor");
 		String titol=request.getParameter("titol");
 		repositoriComentaris.afegirComentari(new Comentari(autor,titol,comentari));

@@ -1,6 +1,7 @@
-package edu.upc.escert.curs.repositori.jdbc;
+package edu.upc.escert.curs.repositori.vulnerable;
 
 import java.sql.Connection;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,15 +10,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import edu.upc.escert.curs.Comentari;
-import edu.upc.escert.curs.repositori.RepositoriComentaris;
+import edu.upc.escert.curs.repositori.*;
 
-public class RepositoriComentarisJDBC extends Repositori implements RepositoriComentaris {
+public class RepositoriComentaris extends Repositori implements IRepositoriComentaris {
 
-	static RepositoriComentarisJDBC instance;
+	static RepositoriComentaris instance;
 
-	public static RepositoriComentarisJDBC getInstance() {
+	public static RepositoriComentaris getInstance() {
 		if (instance == null) {
-			instance = new RepositoriComentarisJDBC();
+			instance = new RepositoriComentaris();
 		}
 		return instance;
 	}

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.upc.escert.curs.repositori.jdbc.RepositoriComentarisJDBC;
+import edu.upc.escert.curs.repositori.*;
 
 /**
  * Servlet implementation class Llistar
@@ -18,7 +18,7 @@ import edu.upc.escert.curs.repositori.jdbc.RepositoriComentarisJDBC;
 @WebServlet("/")
 public class LlistaComentarisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RepositoriComentarisJDBC repositoriComentaris=RepositoriComentarisJDBC.getInstance();
+	private IRepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
 
 
 	/**

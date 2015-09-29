@@ -1,5 +1,6 @@
 <!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="e" uri="https://www.owasp.org/index.php/OWASP_Java_Encoder_Project" %>
 <html>
 <head>
 <title>Curs Programació Segura</title>
@@ -19,9 +20,12 @@ $(document).ready(function() {
 				<c:if test="${username==c.autor}" >
 				<a class="btn btn-default pull-right" href="esborrar?id=${c.id}">Esborrar comentari</a>
 				</c:if>
-				<h3>${c.titol}</h3>
-				<p>${c.comentari}</p>
-				<i>Publicat per <a href="?autor=${c.autor}">${c.autor}</a> el dia ${c.data}</i>
+				<h3><e:forHtml value="${c.titol}"/></h3>
+				<p><e:forHtml value="${c.comentari}"/></p>
+				<p><%=edu.upc.escert.curs.ComentarServlet.policyHTML.sanitize(
+						((edu.upc.escert.curs.Comentari)pageContext.getAttribute("c")).getComentari()
+				)%></p>
+				<i>Publicat per <a href="?autor=<e:forHtmlAttribute value="${c.autor}"/>">${c.autor}</a> el dia ${c.data}</i>
 			</div>
 		</c:forEach>
 
