@@ -39,8 +39,7 @@ public class RepositoriComentaris extends Repositori implements IRepositoriComen
 		}
 	}
 
-	@Override
-	public List<Comentari> getComentarisFromSQL(String sql) {
+	private List<Comentari> getComentarisFromSQL(String sql) {
 		List<Comentari> comentaris=new ArrayList<Comentari>();
 		Connection conn=null;
 		Statement stmt=null;
