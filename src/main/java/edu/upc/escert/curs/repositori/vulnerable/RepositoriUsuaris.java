@@ -36,9 +36,7 @@ public class RepositoriUsuaris extends Repositori implements IRepositoriUsuaris 
 		try {
 			conn = ds.getConnection();
 			stmt = conn.createStatement();
-			//String sql="SELECT count(*) FROM USUARIS WHERE USERNAME='"+username +"' AND PASSWORD='"+password+"'";
-			String hash=calculaSHA256(password);
-			String sql="SELECT count(*) FROM USUARIS WHERE USERNAME='"+username +"' AND PASSWORD='"+hash+"'";
+			String sql="SELECT count(*) FROM USUARIS WHERE USERNAME='"+username +"' AND PASSWORD='"+password+"'";
 			System.out.println("Executo consulta SQL:"+sql);
 			rs=stmt.executeQuery(sql);
 			rs.next();
@@ -57,21 +55,8 @@ public class RepositoriUsuaris extends Repositori implements IRepositoriUsuaris 
 
 	@Override
 	public void afegirUsuari (String username, String password, String rol) {
-		String hash=calculaSHA256(password);
-		executaSQL("INSERT INTO USUARIS VALUES ('" + username + "','" + hash + "','" + rol+ "')");
+		executaSQL("INSERT INTO USUARIS VALUES ('" + username + "','" + password + "','" + rol+ "')");
 	}
 	
-	String calculaSHA256(String password) {
-		String hash=null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(password.getBytes("UTF-8"));
-			byte[] digest = md.digest();
-			hash=String.format("%064x", new java.math.BigInteger(1, digest));
-		} catch (Exception e) {
-			new RuntimeException();
-		}
-		return hash;
-	}
 
 }
