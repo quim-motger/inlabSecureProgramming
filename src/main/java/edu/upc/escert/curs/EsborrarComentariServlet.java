@@ -16,10 +16,6 @@ public class EsborrarComentariServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IRepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
 
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id=request.getParameter("id");
 		repositoriComentaris.esborrarComentari(Integer.parseInt(id));

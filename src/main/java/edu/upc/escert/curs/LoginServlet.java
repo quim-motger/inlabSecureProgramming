@@ -11,15 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import edu.upc.escert.curs.repositori.IRepositoriUsuaris;
 import edu.upc.escert.curs.repositori.RepositoriFactory;
 
-/**
- * Servlet implementation class Login
- */
 @WebServlet("/login")
+@SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 
 	IRepositoriUsuaris repositoriUsuaris=RepositoriFactory.getRepositoriUsuaris();
-
-	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/login.jsp").forward(request,response);

@@ -2,7 +2,6 @@ package edu.upc.escert.curs;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import edu.upc.escert.curs.repositori.RepositoriFactory;
 import edu.upc.escert.curs.repositori.IRepositoriComentaris;
 
-/**
- * Servlet implementation class Llistar
- */
 @WebServlet("/comentar")
 public class ComentarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

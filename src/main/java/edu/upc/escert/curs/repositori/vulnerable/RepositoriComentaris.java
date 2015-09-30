@@ -79,6 +79,11 @@ public class RepositoriComentaris extends Repositori implements IRepositoriComen
 	}
 
 	@Override
+	public List<Comentari> getComentarisPerId (int id) {
+		return getComentarisFromSQL("SELECT * FROM COMENTARIS WHERE ID="+id);
+	}
+
+	@Override
 	public void afegirComentari(Comentari c) {
 		executaSQL("INSERT INTO COMENTARIS (autor,titol,comentari,data) VALUES ('" +
 				c.getAutor() + "','" + c.getTitol() + "','" + c.getComentari() + "',CURRENT_TIMESTAMP())");

@@ -1,9 +1,6 @@
 package edu.upc.escert.curs.repositori.vulnerable;
 
-import java.security.MessageDigest;
 import java.sql.Connection;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,6 +54,6 @@ public class RepositoriUsuaris extends Repositori implements IRepositoriUsuaris 
 	public void afegirUsuari (String username, String password, String rol) {
 		executaSQL("INSERT INTO USUARIS VALUES ('" + username + "','" + password + "','" + rol+ "')");
 	}
-	
+
 
 }

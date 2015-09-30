@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Curs Programació Segura</title>
+<title>Comentar</title>
 <!--  carreguem jQuery, bootstrap i summernote rich text editor -->
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
