@@ -9,15 +9,6 @@ import edu.upc.escert.curs.repositori.*;
 
 public class RepositoriUsuaris extends Repositori implements IRepositoriUsuaris {
 
-	static RepositoriUsuaris instance;
-
-	public static RepositoriUsuaris getInstance() {
-		if (instance==null) {
-			instance=new RepositoriUsuaris();
-		}
-		return instance;
-	}
-
 	protected void crear() {
 		executaSQL("CREATE TABLE IF NOT EXISTS USUARIS (USERNAME VARCHAR(100),PASSWORD VARCHAR(100),rol varchar2(10))");
 		afegirUsuari("jaume","trustno1","admin");

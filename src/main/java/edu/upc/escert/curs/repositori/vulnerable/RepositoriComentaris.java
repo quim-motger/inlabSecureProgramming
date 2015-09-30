@@ -14,15 +14,6 @@ import edu.upc.escert.curs.repositori.*;
 
 public class RepositoriComentaris extends Repositori implements IRepositoriComentaris {
 
-	static RepositoriComentaris instance;
-
-	public static RepositoriComentaris getInstance() {
-		if (instance == null) {
-			instance = new RepositoriComentaris();
-		}
-		return instance;
-	}
-
 	protected void crear() {
 		executaSQL("create table IF NOT EXISTS comentaris ("+
 				"id int auto_increment, "+
