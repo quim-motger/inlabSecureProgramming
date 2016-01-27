@@ -1,6 +1,8 @@
 package edu.upc.escert.curs.repositori;
 
 import edu.upc.escert.curs.repositori.vulnerable.*;
+import edu.upc.escert.curs.repositori.parametric.*;
+import edu.upc.escert.curs.repositori.parametric.RepositoriComentaris;
 
 public class RepositoriFactory {
 	
