@@ -9,14 +9,17 @@
 <body>
 	<div class="container">
 		<c:if test="${not empty username}"><h1>Has entrat com a ${username}</h1></c:if>
-		<h1>Comentaris ${autor}</h1>
+		<h1>Comentaris <c:out value="${autor}"/></h1>
 		<c:forEach items="${comentaris}" var="c">
 			<div class="well">
 				<c:if test="${username==c.autor}" >
 				<a class="btn btn-default pull-right" href="esborrar?id=${c.id}">Esborrar comentari</a>
 				</c:if>
-				<h3>${c.titol}</h3>
+				<h3><c:out value="${c.titol}"/></h3>
 				<p>${c.comentari}</p>
+				<c:url value="/comentaris" var="url_autor">
+				<c:param name="autor" value="${c.autor}"/>
+				</c:url>
 				<i>Publicat per <a href="?autor=${c.autor}">${c.autor}</a> el dia ${c.data}</i>
 			</div>
 		</c:forEach>

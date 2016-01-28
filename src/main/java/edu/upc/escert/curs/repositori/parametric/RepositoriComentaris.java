@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.owasp.html.PolicyFactory;
+import org.owasp.html.Sanitizers;
+
 import edu.upc.escert.curs.Comentari;
 import edu.upc.escert.curs.repositori.IRepositoriComentaris;
 import edu.upc.escert.curs.repositori.Repositori;

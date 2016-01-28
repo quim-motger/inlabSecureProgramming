@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+
+import org.owasp.html.PolicyFactory;
+import org.owasp.html.Sanitizers;
+
 import java.util.ArrayList;
 
 import edu.upc.escert.curs.Comentari;
