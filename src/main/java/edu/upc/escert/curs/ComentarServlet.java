@@ -37,8 +37,13 @@ public class ComentarServlet extends HttpServlet {
 		
 		String comentariSafeHTML = policy.sanitize(comentari);
 		
-		repositoriComentaris.afegirComentari(new Comentari(autor,titol,comentariSafeHTML));
-		response.sendRedirect("comentaris");
+		if (request.getSession().getAttribute("username").equals(autor)) {
+			repositoriComentaris.afegirComentari(new Comentari(autor,titol,comentariSafeHTML));
+			response.sendRedirect("comentaris");
+		} else {
+			response.sendError(HttpServletResponse.SC_FORBIDDEN);
+		}
+		
 	}
 
 }
