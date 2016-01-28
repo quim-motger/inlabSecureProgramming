@@ -21,5 +21,8 @@
 	<error-page>
 	    <location>/error.html</location>
 	</error-page>
+	<session-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 
 </web-app>
