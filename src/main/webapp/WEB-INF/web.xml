@@ -44,5 +44,18 @@
 	      <form-error-page>/loginerror.html</form-error-page>
 	    </form-login-config>
 	</login-config>
+	
+	 <filter>
+	    <filter-name>CsrfFilter</filter-name>
+	    <filter-class>org.apache.catalina.filters.CsrfPreventionFilter</filter-class>
+	    <init-param>
+	      <param-name>entryPoints</param-name>
+	      <param-value>/comentaris</param-value>
+	    </init-param>
+	  </filter>
+	  <filter-mapping>
+	  	<filter-name>CsrfFilter</filter-name>
+	  	<url-pattern>/*</url-pattern>
+	  </filter-mapping>
 
 </web-app>
