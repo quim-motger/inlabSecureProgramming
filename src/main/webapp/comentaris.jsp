@@ -20,11 +20,12 @@
 				<c:url value="/comentaris" var="url_autor">
 				<c:param name="autor" value="${c.autor}"/>
 				</c:url>
-				<i>Publicat per <a href="?autor=${c.autor}">${c.autor}</a> el dia ${c.data}</i>
+				<i>Publicat per <a href="${url_autor}">${c.autor}</a> el dia ${c.data}</i>
 			</div>
 		</c:forEach>
 
-		<a class="btn btn-lg btn-primary pull-right" href="comentar">Comentar</a>
+		<c:url value="/comentar" var="url_comentar"/>
+		<a class="btn btn-lg btn-primary pull-right" href="${url_comentar}">Comentar</a>
 
 	</div>
 </body>
