@@ -18,7 +18,7 @@ import edu.upc.escert.curs.repositori.IRepositoriComentaris;
 public class ComentarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IRepositoriComentaris repositoriComentaris=RepositoriFactory.getRepositoriComentaris();
-	public static PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.LINKS);
+	public static PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.LINKS).and(Sanitizers.STYLES);
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("username",request.getRemoteUser());
